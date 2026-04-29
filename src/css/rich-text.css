@@ -1,0 +1,82 @@
+/*
+Rich Text Styles
+*/
+
+.rich-text {
+  font-size: var(--text-sm);
+  line-height: 1.4;
+
+  & > * + * {
+    margin-top: 1.5em;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    line-height: 1.2;
+    font-size: var(--text-base-minus);
+    font-family: var(--font-primary);
+
+    @media screen and (min-width: theme('screens.lg')) {
+      font-size: var(--text-base);
+    }
+
+    & + * {
+      margin-top: 1.5em;
+    }
+  }
+
+  & > * + h1,
+  & > * + h2,
+  & > * + h3,
+  & > * + h4,
+  & > * + h5,
+  & > * + h6 {
+    margin-top: 3em;
+  }
+
+  ul,
+  ol {
+    padding-left: 1.5em;
+
+    li + li {
+      margin-top: 0.4em;
+    }
+  }
+
+  ul {
+    list-style-type: disc;
+  }
+
+  ol {
+    list-style-type: decimal;
+  }
+
+  a {
+    text-decoration: underline;
+    text-underline-offset: var(--underline-offset);
+    text-decoration-thickness: var(--underline-thickness);
+    transition: opacity 0.3s;
+
+    &:hover {
+      opacity: 0.5;
+    }
+
+    &:focus-visible {
+      outline: 2px solid currentColor;
+      outline-offset: 2px;
+      border-radius: 2px;
+    }
+  }
+
+  strong {
+    font-weight: 600;
+  }
+
+  em {
+    font-style: italic;
+  }
+}

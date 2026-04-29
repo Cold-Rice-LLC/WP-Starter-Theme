@@ -1,0 +1,505 @@
+@import 'tailwindcss';
+
+/*
+Global
+*/
+
+@theme {
+  --text-xs: 1.2rem;
+  --text-xs--line-height: 1;
+  --text-sm: 1.6rem;
+  --text-sm--line-height: 1;
+  --text-base-minus: 2.1rem;
+  --text-base-minus--line-height: 1;
+  --text-base: 2.4rem;
+  --text-base--line-height: 1;
+  --text-base-plus: 3.2rem;
+  --text-base-plus--line-height: 1;
+  --text-md-minus: 3.6rem;
+  --text-md-minus--line-height: 1;
+  --text-md: 4.8rem;
+  --text-md--line-height: 1;
+
+  --color-black: #000;
+  --color-white: #fff;
+  --color-navy: #1d1735;
+  --color-navy-light: #474063;
+  --color-cream: #fafaf2;
+  --color-gold: #8c773e;
+  --color-teal: #277c70;
+  --color-grey: #eae9e7;
+  --color-teal-light: #69d0c1;
+
+  --spacing-base: 2rem;
+  --spacing-md: 3rem;
+  --spacing-lg: 6rem;
+  --spacing-xl: 8rem;
+
+  --font-primary: 'Apercu Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  --font-secondary: 'Apercu Pro Mono', monospace;
+  --font-tertiary: 'Austin', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+:root {
+  --underline-offset: 0.17em;
+  --underline-thickness: 0.05em;
+}
+
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: 0;
+  padding: 1rem 1.6rem;
+  background: var(--color-navy);
+  color: var(--color-white);
+  font-size: var(--text-sm);
+  z-index: 9999;
+
+  &:focus {
+    top: 0;
+  }
+}
+
+* {
+  -webkit-font-smoothing: antialiased;
+}
+
+html {
+  font-size: 10px;
+  color: var(--color-navy);
+  background: var(--color-white);
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  font-size: var(--text-sm);
+  font-family: var(--font-primary);
+  font-weight: normal;
+  line-height: 1;
+
+  @media screen and (min-width: 1024px) {
+    font-size: var(--text-base);
+  }
+}
+
+main {
+  background: var(--color-cream);
+
+  html.dark-mode & {
+    background: var(--color-navy);
+  }
+}
+
+header {
+  flex: none;
+}
+
+button {
+  cursor: pointer;
+  outline: none;
+  box-shadow: none;
+  border: none;
+
+  &:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 2px;
+  }
+}
+
+input {
+  outline: none;
+}
+
+figure {
+  margin: 0;
+}
+
+/*
+Utils
+*/
+
+@utility fill-parent {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+}
+
+@utility media-cover {
+  object-fit: cover;
+  object-position: center;
+  width: 100%;
+  height: 100%;
+}
+
+/*
+Lazy Loading
+*/
+
+img[loading='lazy'] {
+  opacity: 0;
+  transition: opacity 0.4s;
+
+  &.loaded {
+    opacity: 1;
+  }
+}
+
+/*
+Password Form
+*/
+
+.password-form {
+  text-align: center;
+
+  form {
+    width: 350px;
+  }
+
+  form > * + * {
+    margin-top: 1.6rem;
+  }
+
+  form p:first-child {
+    font-size: var(--text-base);
+    text-align: center;
+  }
+
+  form p:nth-child(2) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  form input[type='password'] {
+    outline: none;
+    box-shadow: none;
+    color: black;
+    height: auto;
+    padding: 1rem;
+    border: 2px solid black;
+    background-color: var(--white);
+    display: block;
+    margin-top: 1rem;
+    width: 100%;
+  }
+
+  form label {
+    width: 100%;
+  }
+
+  form input[type='submit'] {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.2rem 2.4rem;
+    border: 1px solid var(--primary-bg);
+    text-transform: uppercase;
+    font-size: var(--text-base-minus);
+    color: var(--primary-bg);
+    text-align: center;
+    width: 100%;
+    margin-top: var(--spacing-base);
+    cursor: pointer;
+    transition:
+      background-color 0.3s,
+      color 0.3s;
+
+    &:hover {
+      @media (width >= 1024px) {
+        border-style: dotted;
+      }
+    }
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.fade-in {
+  opacity: 0;
+  animation: fade-in 0.5s forwards;
+}
+
+.delay-1 {
+  animation-delay: 0.1s;
+}
+
+.delay-2 {
+  animation-delay: 0.2s;
+}
+
+.delay-3 {
+  animation-delay: 0.3s;
+}
+
+/*
+Landing
+*/
+
+@keyframes stroke-flow {
+  from {
+    stroke-dashoffset: 0;
+  }
+  to {
+    stroke-dashoffset: -3600;
+  }
+}
+
+.bg-pattern {
+  pointer-events: none;
+
+  svg {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translateX(-55.4%) translateY(-50%);
+    height: 145%;
+    width: auto;
+    color: var(--color-grey);
+
+    & > path {
+      stroke-dasharray: 3000 600;
+      animation: stroke-flow 12s linear infinite;
+    }
+  }
+
+  html.dark-mode & {
+    svg {
+      color: var(--color-navy-light);
+    }
+  }
+}
+
+.news-item {
+  a {
+    .title {
+      span {
+        position: relative;
+        text-align: left;
+        color: var(--color-navy);
+
+        @media screen and (min-width: theme('screens.lg')) {
+          left: 0;
+          position: absolute;
+          display: inline-block;
+          white-space: nowrap;
+          transform: translateX(0);
+          transition: transform 0.3s;
+        }
+
+        html.dark-mode & {
+          color: var(--color-teal-light);
+        }
+      }
+    }
+
+    .subtitle {
+      span {
+        text-decoration: underline;
+        text-underline-offset: 0.22em;
+        text-decoration-thickness: var(--underline-thickness);
+
+        @media screen and (min-width: theme('screens.lg')) {
+          right: 0;
+          position: absolute;
+          display: inline-block;
+          white-space: nowrap;
+          transform: translateX(0);
+          transition: transform 0.3s;
+        }
+      }
+    }
+
+    @media screen and (min-width: theme('screens.lg')) {
+      &:hover {
+        .title span {
+          transform: translateX(var(--title-center-offset));
+        }
+
+        .subtitle span {
+          transform: translateX(var(--subtitle-center-offset));
+        }
+      }
+    }
+  }
+}
+
+.wordmark-icon {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.nav-theme-toggle svg {
+  transition: transform 0.4s ease;
+}
+
+html.dark-mode .nav-theme-toggle svg {
+  transform: rotate(180deg);
+}
+
+.page-modules {
+  & > section + section {
+    margin-top: var(--spacing-xl);
+  }
+}
+
+/*
+Video Block
+*/
+
+def-video {
+  display: block;
+
+  .video-container {
+    color: white;
+
+    .play {
+      transition: none;
+      pointer-events: auto;
+
+      &:focus-visible {
+        box-shadow: inset 0 0 0 3px white;
+      }
+    }
+
+    &.playing {
+      .play {
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.3s;
+      }
+
+      video,
+      .video-inner {
+        opacity: 1;
+      }
+    }
+  }
+
+  .play-icon {
+    width: 48px;
+    z-index: 10;
+    position: relative;
+
+    @media screen and (min-width: theme('screens.lg')) {
+      width: 50px;
+    }
+  }
+
+  .video-inner {
+    iframe {
+      position: absolute;
+      top: 0px;
+      left: 0px;
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  video,
+  .video-inner {
+    opacity: 0;
+  }
+
+  &.no-poster {
+    video,
+    .video-inner {
+      opacity: 1;
+    }
+  }
+
+  .play {
+    color: var(--color-black);
+  }
+
+  &.autoplay {
+    video {
+      opacity: 1;
+    }
+  }
+}
+
+/*
+Home Page
+*/
+
+.page-home {
+  .main-section {
+    background: var(--color-cream);
+
+    .landing {
+      h1 svg {
+        width: 70vw;
+        max-width: 1100px;
+      }
+
+      #logo-lottie {
+        width: 70vw;
+        max-width: 1100px;
+        color: var(--color-navy);
+      }
+    }
+
+    .blue-text {
+      color: var(--color-navy);
+    }
+
+    .gold-text {
+      color: var(--color-gold);
+    }
+
+    .navy-text {
+      color: var(--color-navy);
+    }
+
+    html.dark-mode & {
+      background: var(--color-navy);
+
+      .landing svg,
+      .landing #logo-lottie {
+        color: var(--color-cream);
+      }
+
+      .blue-text {
+        color: var(--color-grey);
+      }
+
+      .gold-text {
+        color: var(--color-cream);
+      }
+
+      .navy-text {
+        color: var(--color-grey);
+      }
+    }
+  }
+
+  #news {
+    background: var(--color-gold);
+
+    html.dark-mode & {
+      background: var(--color-black);
+    }
+  }
+}
+
+/*
+Default Page
+*/
+
+.page-content {
+  color: var(--color-navy);
+
+  html.dark-mode & {
+    color: var(--color-grey);
+  }
+}
